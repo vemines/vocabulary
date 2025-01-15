@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vocabulary</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Home Screen -->
+      <div id="home-screen" class="hidden">
+        <h1>Vocabulary App</h1>
+        <nav>
+          <button><i class="fa-brands fa-leanpub"></i>Learn Words</button>
+          <button><i class="fa-solid fa-list-check"></i>Quiz</button>
+          <button><i class="fa-regular fa-bookmark"></i>Marked Words</button>
+          <button><i class="fa-solid fa-circle-plus"></i>Added Words</button>
+          <button><i class="fa-solid fa-gear"></i>Settings</button>
+        </nav>
+      </div>
+
+      <!-- Vocabulary Card -->
+      <div id="word-screen" class="hidden">
+        <div class="header">
+          <i class="fa-solid fa-arrow-left back-icon" onclick="showHomeScreen()"></i>
+          <i class="fa-regular fa-bookmark" id="bookmark-btn"></i>
+          <i class="fa-solid fa-volume-low" id="tts-btn"></i>
+        </div>
+        <div class="word"></div>
+        <div class="pronounce">
+          <span class="ipa"></span>
+          <span class="path"></span>
+        </div>
+        <div class="meanings"></div>
+        <div class="footer">
+          <button class="btn prev-word">Prev word</button>
+          <button class="btn next-word">Next word</button>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div id="quiz-screen" class="hidden">
+        <div class="nav">
+          <i class="fa-solid fa-arrow-left back-icon" onclick="showHomeScreen()"></i>
+          <nav class="quiz-nav" id="quiz-nav"></nav>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-content" id="quiz-content">
+            <div class="question"></div>
+            <div class="answer_list"></div>
+          </div>
+          <div class="footer">
+            <button class="btn prev-btn"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+            <button class="btn next-btn">Next <i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn submit-btn">Submit Answer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div id="settings-screen" class="hidden">
+        <div class="header">
+          <i class="fa-solid fa-arrow-left back-icon" onclick="showHomeScreen()"></i>
+          <h2>Settings</h2>
+        </div>
+
+        <div class="setting-row">
+          <h4>Dark Mode</h4>
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <h4>Word Mode</h4>
+          <div class="radio-group">
+            <label><input type="radio" name="word-mode" value="5k" checked /> 5k</label>
+            <label><input type="radio" name="word-mode" value="10k" /> 10k</label>
+            <label><input type="radio" name="word-mode" value="dict" /> Dictionary</label>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <h4>Word Order</h4>
+          <div class="radio-group">
+            <label><input type="radio" name="word-order" value="default" /> Default</label>
+            <label><input type="radio" name="word-order" value="shuffer" /> Shuffle</label>
+          </div>
+        </div>
+
+        <div class="setting-row relative pointer" onclick="showLanguageDropdown()">
+          <h4>Language</h4>
+          <div class="language-select">
+            <span id="language">English</span>
+            <i class="fa-solid fa-caret-down"></i>
+            <div id="language-dropdown" class="dropdown-content">
+              <p class="dropdown-item">English</p>
+              <p class="dropdown-item">Vietnamese</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-row relative pointer" onclick="showDownloadDropdown()">
+          <h4>Download Data</h4>
+          <div id="download-dropdown" class="dropdown-content">
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick=" jsonDownload('https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_5k.json','data_5k.json')"
+            >
+              JSON 5k
+            </a>
+            <a
+              class="dropdown-item"
+              href="https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_5k.xlsx"
+              target="_blank"
+            >
+              XLSX 5k
+            </a>
+            <a
+              class="dropdown-item"
+              href="https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_5k.pdf"
+              target="_blank"
+            >
+              PDF 5k
+            </a>
+            <a
+              class="dropdown-item"
+              href="#"
+              onclick=" jsonDownload('https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_10k.json','data_10k.json')"
+            >
+              JSON 10k
+            </a>
+            <a
+              class="dropdown-item"
+              href="https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_10k.xlsx"
+              target="_blank"
+            >
+              XLSX 10k
+            </a>
+            <a
+              class="dropdown-item"
+              href="https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_10k.pdf"
+              target="_blank"
+            >
+              PDF 10k
+            </a>
+            <a
+              class="dropdown-item"
+              href="https://github.com/vemines/vocabulary-en-vi"
+              target="_blank"
+            >
+              DOAWLOAD ALL
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Markword screen -->
+      <div id="marked-screen" class="hidden">
+        <div class="header">
+          <i class="fa-solid fa-arrow-left back-icon" onclick="showHomeScreen()"></i>
+          <h2>Marked Words</h2>
+        </div>
+        <div class="marked-words-list">
+          <!-- Marked words will be rendered here -->
+        </div>
+      </div>
+
+      <!-- Add/Edit Word Form (Modal) -->
+      <div id="custom-word-modal" class="modal hidden">
+        <div class="modal-content">
+          <div class="header">
+            <h2 class="modal-title">Add Word</h2>
+            <span class="close-modal"><i class="fa-solid fa-xmark"></i></span>
+          </div>
+
+          <input type="text" placeholder="Word" />
+          <input type="text" placeholder="IPA" />
+          <div class="select-wrapper">
+            <div class="select word-type">
+              <div class="selected-option">Select type</div>
+              <div class="options-container">
+                <div class="option" data-value="verb">Verb</div>
+                <div class="option" data-value="noun">Noun</div>
+                <div class="option" data-value="adverb">Adverb</div>
+                <div class="option" data-value="adjective">Adjective</div>
+                <div class="option" data-value="pronoun">Pronoun</div>
+                <div class="option" data-value="auxiliary verb">Auxiliary verb</div>
+                <div class="option" data-value="determiner">Determiner</div>
+                <div class="option" data-value="conjunction">Conjunction</div>
+                <div class="option" data-value="preposition">Preposition</div>
+              </div>
+            </div>
+            <input type="text" placeholder="Meanings, separate by ;" />
+          </div>
+
+          <div class="select-wrapper">
+            <div class="select word-type">
+              <div class="selected-option">Select type</div>
+              <div class="options-container">
+                <div class="option" data-value="verb">Verb</div>
+                <div class="option" data-value="noun">Noun</div>
+                <div class="option" data-value="adverb">Adverb</div>
+                <div class="option" data-value="adjective">Adjective</div>
+                <div class="option" data-value="pronoun">Pronoun</div>
+                <div class="option" data-value="auxiliary verb">Auxiliary verb</div>
+                <div class="option" data-value="determiner">Determiner</div>
+                <div class="option" data-value="conjunction">Conjunction</div>
+                <div class="option" data-value="preposition">Preposition</div>
+              </div>
+            </div>
+            <input type="text" placeholder="Meanings, separate by ;" />
+          </div>
+
+          <div class="btn-footer">
+            <button class="btn add-type">Add Type</button>
+            <button class="btn clear-form">Clear Data</button>
+            <button class="btn action-form">Add Word</button>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
