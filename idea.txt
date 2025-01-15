@@ -1,37 +1,24 @@
 // home screen
 learn word (with param current word)
 added word
-marked word
 Search word
-
-
-// vocabulary ui card
-ipa     part
 
 // action 
 mouse: right/left space click or slide
 
-// custom vocabulary
-word mode: beginner (5k), good (10k), dictionary (all)
-word data: order, shuffle
-
 // storage
-custom vocabulary setting
-word learn []
-quiz data []
-marked word []
 added word []
 
 -- quiz
 show result dialog
 
--- add word screen / marked word
+-- add word screen
 listtile: word  tts
+          ipa
           type1: mean1, mean2,...
           type2: mean1, mean2,...
 
 
 -- other
-light / dark mode
 vietnamese / english interface
 tts vietnamese (finding)
