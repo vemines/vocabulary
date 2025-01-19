@@ -1,0 +1,76 @@
+{
+  "vi": {
+    "homeScreen": {
+      "title": "Từ Vựng",
+      "learnWords": "Học Từ vựng",
+      "quiz": "Trắc nghiệm",
+      "markedWords": "Từ đã Đánh dấu",
+      "addedWords": "Từ đã thêm",
+      "settings": "Cài đặt"
+    },
+    "wordScreen": {
+      "previousWord": "Từ trước đó",
+      "nextWord": "Từ tiếp theo"
+    },
+    "quizScreen": {
+      "previous": "Câu trước",
+      "next": "Câu sau",
+      "submitAnswer": "Kiểm tra",
+      "question": "Câu hỏi: Ý nghĩa của từ "
+    },
+    "quizResultDialog": {
+      "title": "Kết quả bài kiểm tra",
+      "complete": "Bạn đã hoàn thành bài kiểm tra hôm nay:",
+      "fail": "Bạn đã trượt bài kiểm tra hôm nay, thử lại nhé:",
+      "correctAnswer": "Trả lời đúng",
+      "wrongAnswer": "Trả lời sai"
+    },
+    "settingsScreen": {
+      "title": "Cài đặt",
+      "quizPerDay": "Số câu hỏi mỗi ngày",
+      "repeatQuizDay": "Số ngày lặp lại",
+      "darkMode": "Chế độ tối",
+      "wordMode": "Chế độ từ vựng",
+      "wordOrder": "Thứ tự từ vựng",
+      "language": "Ngôn ngữ",
+      "downloadData": "Tải dữ liệu"
+    },
+    "markedWordScreen": {
+      "title": "Từ vựng đã đánh dấu"
+    },
+    "addedWordScreen": {
+      "title": "Từ vựng đã thêm",
+      "addWord": "Thêm từ"
+    },
+    "customWordModal": {
+      "title": "Thêm từ",
+      "word": "Từ",
+      "ipa": "IPA",
+      "parts": "Âm tiết: ngăn cách bởi dấu ;",
+      "selectType": "Chọn loại từ",
+      "meanings": "Nghĩa của từ: ngăn cách bởi dấu ;",
+      "addType": "Thêm loại từ",
+      "fillAI": "Điền bằng AI",
+      "clearData": "Xóa dữ liệu",
+      "submit": "Xác nhận"
+    },
+    "apiKeyDialog": {
+      "title": "Nhập Google Api key",
+      "description": "Để sử dụng tính năng điền từ bằng AI, bạn cần có Google API key, bạn có thể lấy api key",
+      "link": "Tại đây",
+      "note": "Xin lưu ý key này được lưu tại LocalStorage và chỉ sử dụng cho project này",
+      "placeholder": "Nhập Google API key",
+      "useKey": "Sử dụng key này"
+    },
+    "infoDialog": {
+      "title": "Thông tin",
+      "description1": "Nhấn <b>n</b> hoặc <b>d</b> hoặc <b>→</b> để chuyển đến từ/câu trắc nghiệm tiếp theo.",
+      "description2": "Sử dụng <b>p</b> hoặc <b>a</b> hoặc <b>←</b> để chuyển đến từ/câu trắc nghiệm trước đó.",
+      "description3": "Để tăng tiến trình Câu hỏi trắc nghiệm, bạn phải đạt được số điểm từ 80% trở lên. Nếu bạn vượt qua bài kiểm tra, nội dung bài kiểm tra sẽ giữ nguyên cho đến ngày tiếp theo. Nếu bạn không đạt được 80% trở lên, nội dung bài kiểm tra của ngày mai sẽ không thay đổi.",
+      "description4": "Trong Cài đặt, thay đổi <b>Số câu hỏi mỗi ngày</b> và <b>Số ngày lặp lại</b> để tạo dữ liệu bài kiểm tra.",
+      "description5": "Ví dụ: <b>Số câu hỏi mỗi ngày là 10</b> và <b>Số ngày lặp lại là 5</b>",
+      "description6": "Ngày 1: bài kiểm tra 0 -> 10. Ngày 2: 0 -> 20 ... Ngày 6: 10 -> 60",
+      "description7": "<b style=\"color: red\">Đây là ứng dụng không máy chủ. Dữ liệu của bạn được lưu tại localStorage. Bạn sẽ mất dữ liệu nếu sử dụng chế độ ẩn danh hoặc xóa dữ liệu trình duyệt</b>"
+    }
+  }
+}

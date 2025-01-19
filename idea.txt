@@ -1,24 +1,6 @@
 // home screen
-learn word (with param current word)
-added word
+seek to word
 Search word
 
-// action 
-mouse: right/left space click or slide
-
-// storage
-added word []
-
--- quiz
-show result dialog
-
--- add word screen
-listtile: word  tts
-          ipa
-          type1: mean1, mean2,...
-          type2: mean1, mean2,...
-
-
 -- other
-vietnamese / english interface
 tts vietnamese (finding)

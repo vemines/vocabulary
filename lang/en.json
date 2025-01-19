@@ -1,0 +1,76 @@
+{
+  "en": {
+    "homeScreen": {
+      "title": "Vocabulary App",
+      "learnWords": "Learn Words",
+      "quiz": "Quiz",
+      "markedWords": "Marked Words",
+      "addedWords": "Added Words",
+      "settings": "Settings"
+    },
+    "wordScreen": {
+      "previousWord": "Previous word",
+      "nextWord": "Next word"
+    },
+    "quizScreen": {
+      "previous": "Previous",
+      "next": "Next",
+      "submitAnswer": "Submit Answer",
+      "question": "Question: What is the meaning of "
+    },
+    "quizResultDialog": {
+      "title": "Quiz Result",
+      "complete": "You've completed today's quiz!",
+      "fail": "You failed today's quiz, try again:",
+      "correctAnswer": "Correct Answer",
+      "wrongAnswer": "Wrong Answer"
+    },
+    "settingsScreen": {
+      "title": "Settings",
+      "quizPerDay": "Quiz Per Day",
+      "repeatQuizDay": "Repeat Quiz Day",
+      "darkMode": "Dark Mode",
+      "wordMode": "Word Mode",
+      "wordOrder": "Word Order",
+      "language": "Language",
+      "downloadData": "Download Data"
+    },
+    "markedWordScreen": {
+      "title": "Marked Words"
+    },
+    "addedWordScreen": {
+      "title": "Added Words",
+      "addWord": "Add Word"
+    },
+    "customWordModal": {
+      "title": "Add Word",
+      "word": "Word",
+      "ipa": "IPA",
+      "selectType": "Select Type",
+      "meanings": "Meanings: separate by ;",
+      "parts": "Parts (separate by ;)",
+      "addType": "Add Type",
+      "fillAI": "Fill with AI",
+      "clearData": "Clear Data",
+      "submit": "Submit"
+    },
+    "apiKeyDialog": {
+      "title": "Enter Google API Key",
+      "description": "To use AI word filling, you need a Google API key. You can get one",
+      "link": "here",
+      "note": "Please note that this key is saved in localStorage and used only for this project.",
+      "placeholder": "Enter Google API key",
+      "useKey": "Use This Key"
+    },
+    "infoDialog": {
+      "title": "Info",
+      "description1": "Press <b>n</b>, <b>d</b>, or <b>→</b> for next word/quiz.",
+      "description2": "Use <b>p</b>, <b>a</b>, or <b>←</b> for previous word/quiz.",
+      "description3": "An 80% score on the quiz is required to advance. Quiz content will remain the same until the next Quiz Day, regardless of the result. If you do not achieve 80% or higher, the tomorrow quiz content will not change.",
+      "description4": "In Settings, modify <b>Quiz Per Day</b> and <b>Repeat Quiz Day</b> to generate quiz data.",
+      "description5": "Example: <b>Quiz Per Day is 10</b> and <b>Repeat Quiz is 5</b>",
+      "description6": "Day 1: quiz 0-10. Day 2: 0-20 ... Day 6: 10-60",
+      "description7": "This app is serverless. Your data is saved in localStorage. Data will be lost if you use incognito or clear browser data."
+    }
+  }
+}

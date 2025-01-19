@@ -14,13 +14,26 @@
     <div id="app">
       <!-- Home Screen -->
       <div id="home-screen" class="hidden">
-        <h1>Vocabulary App</h1>
+        <h1 data-i18n="homeScreen.title">Vocabulary App</h1>
         <nav>
-          <button><i class="fa-brands fa-leanpub"></i>Learn Words</button>
-          <button><i class="fa-solid fa-list-check"></i>Quiz</button>
-          <button><i class="fa-regular fa-bookmark"></i>Marked Words</button>
-          <button><i class="fa-solid fa-circle-plus"></i>Added Words</button>
-          <button><i class="fa-solid fa-gear"></i>Settings</button>
+          <button>
+            <i class="fa-brands fa-leanpub"></i>
+            <span data-i18n="homeScreen.learnWords">Learn Words</span>
+          </button>
+          <button>
+            <i class="fa-solid fa-list-check"></i><span data-i18n="homeScreen.quiz">Quiz</span>
+          </button>
+          <button>
+            <i class="fa-regular fa-bookmark"></i>
+            <span data-i18n="homeScreen.markedWords">Marked Words</span>
+          </button>
+          <button>
+            <i class="fa-solid fa-circle-plus"></i>
+            <span data-i18n="homeScreen.addedWords">Added Words</span>
+          </button>
+          <button>
+            <i class="fa-solid fa-gear"></i><span data-i18n="homeScreen.settings">Settings</span>
+          </button>
         </nav>
       </div>
 
@@ -38,8 +51,12 @@
         </div>
         <div class="meanings"></div>
         <div class="footer">
-          <button class="btn prev-word">Prev word</button>
-          <button class="btn next-word">Next word</button>
+          <button class="btn prev-word">
+            <span data-i18n="wordScreen.previousWord">Prev word</span>
+          </button>
+          <button class="btn next-word">
+            <span data-i18n="wordScreen.nextWord">Next word</span>
+          </button>
         </div>
       </div>
 
@@ -56,10 +73,37 @@
             <div class="answer_list"></div>
           </div>
           <div class="footer">
-            <button class="btn prev-btn"><i class="fa-solid fa-chevron-left"></i> Prev</button>
-            <button class="btn next-btn">Next <i class="fa-solid fa-chevron-right"></i></button>
-            <button class="btn submit-btn">Submit Answer</button>
+            <button class="btn prev-btn">
+              <i class="fa-solid fa-chevron-left"></i>
+              <span data-i18n="quizScreen.previous">Previous</span>
+            </button>
+            <button class="btn next-btn">
+              <span data-i18n="quizScreen.next">Next</span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <button class="btn submit-btn">
+              <span data-i18n="quizScreen.submitAnswer"> Submit Answer</span>
+            </button>
           </div>
+        </div>
+      </div>
+
+      <!-- Quiz Result dialog -->
+      <div class="dialog" id="quiz-result-dialog">
+        <div class="dialog-header">
+          <h2 class="dialog-title" data-i18n="quizResultDialog.title">Quiz result</h2>
+          <button class="close-dialog" onclick="closeQuizResultDialog()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="dialog-content">
+          <p id="dialog-text" data-i18n="quizResultDialog.complete">
+            You have complete today quiz:
+          </p>
+          <p id="dialog-text" data-i18n="quizResultDialog.fail">You fail today quiz, try again:</p>
+          <br />
+          <b>Correct Answer: 0</b>
+          <b>Wrong Answer: 0</b>
         </div>
       </div>
 
@@ -67,11 +111,24 @@
       <div id="settings-screen" class="hidden">
         <div class="header">
           <i class="fa-solid fa-arrow-left back-icon" onclick="showHomeScreen()"></i>
-          <h2>Settings</h2>
+          <h2 data-i18n="settingsScreen.title">Settings</h2>
         </div>
 
         <div class="setting-row">
-          <h4>Dark Mode</h4>
+          <label for="quizPerDay"
+            ><h4 data-i18n="settingsScreen.quizPerDay">Quiz Per Day</h4></label
+          >
+          <input type="number" value="10" id="quizPerDay" />
+        </div>
+        <div class="setting-row">
+          <label for="repeatQuizDay"
+            ><h4 data-i18n="settingsScreen.repeatQuizDay">Repeat Quiz Day</h4></label
+          >
+          <input type="number" value="5" id="repeatQuizDay" />
+        </div>
+
+        <div class="setting-row">
+          <h4 data-i18n="settingsScreen.darkMode">Dark Mode</h4>
           <label class="switch">
             <input type="checkbox" />
             <span class="slider"></span>
@@ -79,7 +136,7 @@
         </div>
 
         <div class="setting-row">
-          <h4>Word Mode</h4>
+          <h4 data-i18n="settingsScreen.wordMode">Word Mode</h4>
           <div class="radio-group">
             <label><input type="radio" name="word-mode" value="5k" checked /> 5k</label>
             <label><input type="radio" name="word-mode" value="10k" /> 10k</label>
@@ -88,7 +145,7 @@
         </div>
 
         <div class="setting-row">
-          <h4>Word Order</h4>
+          <h4 data-i18n="settingsScreen.wordOrder">Word Order</h4>
           <div class="radio-group">
             <label><input type="radio" name="word-order" value="default" /> Default</label>
             <label><input type="radio" name="word-order" value="shuffer" /> Shuffle</label>
@@ -96,27 +153,21 @@
         </div>
 
         <div class="setting-row relative pointer" onclick="showLanguageDropdown()">
-          <h4>Language</h4>
+          <h4 data-i18n="settingsScreen.language">Language</h4>
           <div class="language-select">
             <span id="language">English</span>
             <i class="fa-solid fa-caret-down"></i>
             <div id="language-dropdown" class="dropdown-content">
-              <p class="dropdown-item">English</p>
-              <p class="dropdown-item">Vietnamese</p>
+              <p class="dropdown-item" data-lang="en">English</p>
+              <p class="dropdown-item" data-lang="vi">Tiếng Việt</p>
             </div>
           </div>
         </div>
 
         <div class="setting-row relative pointer" onclick="showDownloadDropdown()">
-          <h4>Download Data</h4>
+          <h4 data-i18n="settingsScreen.downloadData">Download Data</h4>
           <div id="download-dropdown" class="dropdown-content">
-            <a
-              class="dropdown-item"
-              href="#"
-              onclick=" jsonDownload('https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_5k.json','data_5k.json')"
-            >
-              JSON 5k
-            </a>
+            <a class="dropdown-item" href="#" onclick="downloadJSON(5000)"> JSON 5k </a>
             <a
               class="dropdown-item"
               href="https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_5k.xlsx"
@@ -131,13 +182,7 @@
             >
               PDF 5k
             </a>
-            <a
-              class="dropdown-item"
-              href="#"
-              onclick=" jsonDownload('https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_10k.json','data_10k.json')"
-            >
-              JSON 10k
-            </a>
+            <a class="dropdown-item" href="#" onclick="downloadJSON(10000)"> JSON 10k </a>
             <a
               class="dropdown-item"
               href="https://raw.githubusercontent.com/vemines/vocabulary-en-vi/refs/heads/main/dictionary/data/data_10k.xlsx"
@@ -164,13 +209,28 @@
       </div>
 
       <!-- Markword screen -->
-      <div id="marked-screen" class="hidden">
+      <div id="marked-word-screen" class="hidden">
         <div class="header">
           <i class="fa-solid fa-arrow-left back-icon" onclick="showHomeScreen()"></i>
-          <h2>Marked Words</h2>
+          <h2 data-i18n="markedWordScreen.title">Marked Words</h2>
         </div>
         <div class="marked-words-list">
           <!-- Marked words will be rendered here -->
+        </div>
+      </div>
+
+      <!-- Added Word Screen -->
+      <div id="added-word-screen" class="hidden">
+        <div class="header">
+          <i class="fa-solid fa-arrow-left back-icon" onclick="showHomeScreen()"></i>
+          <h2 data-i18n="addedWordScreen.title">Added Words</h2>
+          <button class="btn add-word-btn">
+            <i class="fa-solid fa-plus"></i>
+            <span data-i18n="addedWordScreen.addWord">Add Word</span>
+          </button>
+        </div>
+        <div class="added-words-list">
+          <!-- Added words will be rendered here -->
         </div>
       </div>
 
@@ -178,55 +238,111 @@
       <div id="custom-word-modal" class="modal hidden">
         <div class="modal-content">
           <div class="header">
-            <h2 class="modal-title">Add Word</h2>
+            <h2 class="modal-title" data-i18n="customWordModal.title">Add Word</h2>
             <span class="close-modal"><i class="fa-solid fa-xmark"></i></span>
           </div>
 
-          <input type="text" placeholder="Word" />
-          <input type="text" placeholder="IPA" />
-          <div class="select-wrapper">
-            <div class="select word-type">
-              <div class="selected-option">Select type</div>
-              <div class="options-container">
-                <div class="option" data-value="verb">Verb</div>
-                <div class="option" data-value="noun">Noun</div>
-                <div class="option" data-value="adverb">Adverb</div>
-                <div class="option" data-value="adjective">Adjective</div>
-                <div class="option" data-value="pronoun">Pronoun</div>
-                <div class="option" data-value="auxiliary verb">Auxiliary verb</div>
-                <div class="option" data-value="determiner">Determiner</div>
-                <div class="option" data-value="conjunction">Conjunction</div>
-                <div class="option" data-value="preposition">Preposition</div>
-              </div>
-            </div>
-            <input type="text" placeholder="Meanings, separate by ;" />
+          <input type="text" data-i18n="customWordModal.word" placeholder="Word" id="custom-word" />
+          <div class="pronounce">
+            <input type="text" data-i18n="customWordModal.ipa" placeholder="IPA" id="custom-ipa" />
+            <input
+              type="text"
+              data-i18n="customWordModal.parts"
+              placeholder="Parts: separate by ;"
+              id="custom-parts"
+            />
           </div>
 
-          <div class="select-wrapper">
-            <div class="select word-type">
-              <div class="selected-option">Select type</div>
-              <div class="options-container">
-                <div class="option" data-value="verb">Verb</div>
-                <div class="option" data-value="noun">Noun</div>
-                <div class="option" data-value="adverb">Adverb</div>
-                <div class="option" data-value="adjective">Adjective</div>
-                <div class="option" data-value="pronoun">Pronoun</div>
-                <div class="option" data-value="auxiliary verb">Auxiliary verb</div>
-                <div class="option" data-value="determiner">Determiner</div>
-                <div class="option" data-value="conjunction">Conjunction</div>
-                <div class="option" data-value="preposition">Preposition</div>
-              </div>
-            </div>
-            <input type="text" placeholder="Meanings, separate by ;" />
-          </div>
+          <button class="btn add-type">
+            <span data-i18n="customWordModal.addType">Add Type</span>
+          </button>
 
           <div class="btn-footer">
-            <button class="btn add-type">Add Type</button>
-            <button class="btn clear-form">Clear Data</button>
-            <button class="btn action-form">Add Word</button>
+            <button class="btn generated-data">
+              <span data-i18n="customWordModal.fillAI">Fill with AI</span>
+            </button>
+            <button class="btn clear-form">
+              <span data-i18n="customWordModal.clearData">Clear Data</span>
+            </button>
+            <button class="btn action-form">
+              <span data-i18n="customWordModal.submit">Submit</span>
+            </button>
           </div>
         </div>
       </div>
+
+      <!-- Float action button -->
+      <div class="fab-container">
+        <button class="fab" id="fab-info1"><i class="fa-solid fa-info"></i></button>
+        <button class="fab" id="fab-api-key"><i class="fa-solid fa-key"></i></button>
+      </div>
+      <div class="dialog" id="api-key-dialog">
+        <div class="dialog-header">
+          <h2 class="dialog-title" data-i18n="apiKeyDialog.title">Enter Google Api key</h2>
+          <button class="close-dialog" onclick="closeApiKeyDialog()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="dialog-content">
+          <p data-i18n="apiKeyDialog.description">
+            To use fill word with AI need Google API key, You can get api key
+            <a
+              href="https://aistudio.google.com/apikey"
+              target="_blank"
+              data-i18n="apiKeyDialog.link"
+              ><b>At Here</b></a
+            >
+          </p>
+          <b data-i18n="apiKeyDialog.note"
+            >Please note this key save at LocalStorage and only use for this project only</b
+          >
+          <input
+            type="text"
+            id="dialog-input"
+            placeholder="Enter Google API key"
+            data-i18n="apiKeyDialog.placeholder"
+          />
+          <button id="google-api-key-btn" data-i18n="apiKeyDialog.useKey">Use This Key</button>
+        </div>
+      </div>
+
+      <div class="dialog" id="info1-dialog">
+        <div class="dialog-header">
+          <h2 class="dialog-title" data-i18n="infoDialog.title">Info</h2>
+          <button class="close-dialog" onclick="closeInfo1Dialog()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="dialog-content">
+          <p class="dialog-text" data-i18n="infoDialog.description1">
+            Press <b>n</b> or <b>d</b> or <b>→</b> for next word / next quiz.
+          </p>
+          <p class="dialog-text" data-i18n="infoDialog.description2">
+            Use <b>p</b> or <b>a</b> or <b>←</b> for previous word / previous quiz.
+          </p>
+          <p class="dialog-text" data-i18n="infoDialog.description3">
+            To advance on Quiz Day, you must achieve a score of 80% or higher on the quiz. If you
+            pass the quiz, the quiz content will remain the same until the next Quiz Day. If you do
+            not achieve 80% or higher, the tomorrow quiz content will not change.
+          </p>
+          <p class="dialog-text" data-i18n="infoDialog.description4">
+            In Setting change <b>Quiz Per Day</b> and <b>Repeat Quiz Day</b> for generate quiz data.
+          </p>
+          <p class="dialog-text" data-i18n="infoDialog.description5">
+            ex: <b>Quiz Per Day is 10</b> and <b>Repeat Quiz is 5</b>
+          </p>
+          <p class="dialog-text" data-i18n="infoDialog.description6">
+            Day 1: quiz 0 -> 10. Day 2: 0 -> 20 ... Day 6: 10 -> 60
+          </p>
+          <p class="dialog-text" data-i18n="infoDialog.description7">
+            <b style="color: red">
+              This is serverless. Your data is save at localStorage. You will lost data it use
+              incognito or delete browser data
+            </b>
+          </p>
+        </div>
+      </div>
+      <div class="overlay" id="overlay"></div>
       <!--  -->
     </div>
     <script src="js/script.js"></script>
