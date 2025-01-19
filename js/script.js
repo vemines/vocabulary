@@ -6,9 +6,9 @@ let translations = {};
 
 async function loadTranslations() {
   try {
-    const enResponse = await fetch('/lang/en.json');
+    const enResponse = await fetch('lang/en.json');
     translations.en = await enResponse.json();
-    const viResponse = await fetch('/lang/vi.json');
+    const viResponse = await fetch('lang/vi.json');
     translations.vi = await viResponse.json();
   } catch (error) {
     console.error('Error loading translations:', error);
