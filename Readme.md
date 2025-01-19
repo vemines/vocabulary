@@ -7,11 +7,11 @@ You can view a live demo of the project at: [Live demo](https://vemines.github.i
 ## Features
 
 - **Learn Words**: Browse and learn new words with their meanings and pronunciations.
-- **Quizzes**: Test your knowledge with quizzes based on the vocabulary you have learned.
-- **Marked Words**: Save words you want to revisit later.
-- **Added Words**: Add custom words to your vocabulary list. (On developing)
-- **Settings**: Customize your experience with options for dark mode, word modes (5k, 10k, dictionary), and word order (default, shuffle). Download custom data
-- **Multi-language Support**: Currently supports English and Vietnamese. (On developing)
+- **Quizzes**: Test your knowledge with quizzes.
+- **Marked Words**: Save words you want to learn later.
+- **Added Words**: Add custom words. Fill data with AI.
+- **Settings**: Customize your experience with options for dark mode, word modes (5k, 10k, dictionary), and word order (default, shuffle), quiz options. Download custom data
+- **Multi-language Support**: Currently supports English and Vietnamese.
 
 ## Storage Used
 
