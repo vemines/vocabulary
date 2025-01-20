@@ -153,7 +153,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(100vw, 600px);
+  width: min(95vw, 600px);
   background-color: $white;
   padding: 5vh 0;
 
@@ -203,7 +203,7 @@ body {
 
 /* Vocabulary Card */
 #word-screen {
-  width: min(100vw, 600px);
+  width: min(95vw, 600px);
   padding: 20px;
   background-color: $white;
 
@@ -263,6 +263,14 @@ body {
     margin-top: 16px;
     border-top: 2px solid $border-color;
     padding-top: 10px;
+
+    #jump-to {
+      input {
+        width: 60px;
+        border-radius: 8px;
+        padding: 10px 8px;
+      }
+    }
   }
 }
 
@@ -275,11 +283,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: min(100vw, 1000px);
+  width: min(95vw, 1000px);
 
   .nav {
     padding-top: 10px;
-    width: min(100vw, 600px);
+    width: min(100%, 600px);
 
     .quiz-nav {
       margin-top: 16px;
@@ -379,7 +387,7 @@ body {
 
   .quiz {
     background: #fff;
-    min-width: min(100vw, 600px);
+    min-width: min(100%, 600px);
     margin-top: 16px;
     .dark-mode & {
       background: #444;
@@ -791,7 +799,7 @@ body {
 
 /* Marked words screen */
 #marked-word-screen {
-  width: min(100vw, 600px);
+  width: min(95vw, 600px);
   padding: 20px;
   background-color: $white;
 
@@ -855,7 +863,7 @@ body {
 
 /* Added Word Screen*/
 #added-word-screen {
-  width: min(100vw, 600px);
+  width: min(95vw, 600px);
   padding: 20px;
   background-color: $white;
 
@@ -950,7 +958,7 @@ body {
 
 /* Settings Screen */
 #settings-screen {
-  width: min(100vw, 600px);
+  width: min(95vw, 600px);
   background-color: $white;
   border-radius: 8px;
   .dark-mode & {
@@ -1114,21 +1122,6 @@ body {
   }
 }
 
-/* Responsive design */
-@media (min-width: 768px) {
-  #quiz-app {
-    flex-direction: row;
-    #quiz-navigation {
-      flex-direction: column;
-      max-width: 200px;
-      flex-wrap: nowrap;
-    }
-    #quiz-content {
-      flex: 1;
-    }
-  }
-}
-
 // Float action button
 .fab-container {
   position: fixed;
@@ -1168,7 +1161,7 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  width: 500px;
+  width: min(95%, 500px);
   &.open {
     display: block;
   }
@@ -1182,6 +1175,7 @@ body {
     button {
       border-radius: 4px;
       border: none;
+      background-color: transparent;
       i {
         font-size: 24px;
         padding: 4px 8px;
@@ -1233,6 +1227,23 @@ body {
       }
       b:nth-child(2) {
         color: $incorrect-darkest-light;
+      }
+    }
+
+    #search-results {
+      max-height: 400px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+
+      .search-result-item {
+        padding: 8px;
+        border-radius: 4px;
+        background-color: $white;
+
+        &:hover {
+          background-color: $background-light;
+          cursor: pointer;
+        }
       }
     }
   }

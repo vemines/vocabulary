@@ -1,6 +1,2 @@
-// home screen
-seek to word
-Search word
-
 -- other
 tts vietnamese (finding)

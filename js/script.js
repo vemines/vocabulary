@@ -365,46 +365,63 @@ function showAddedWordScreen() {
 }
 
 // Home screen
-const learnButton = homeScreen.querySelectorAll('button')[0];
-const exerciseButton = homeScreen.querySelectorAll('button')[1];
-const markedButton = homeScreen.querySelectorAll('button')[2];
-const addedWordButton = homeScreen.querySelectorAll('button')[3];
-const settingButton = homeScreen.querySelectorAll('button')[4];
+const learnBtn = homeScreen.querySelectorAll('button')[0];
+const exerciseBtn = homeScreen.querySelectorAll('button')[1];
+const markedBtn = homeScreen.querySelectorAll('button')[2];
+const addedWordBtn = homeScreen.querySelectorAll('button')[3];
+const settingBtn = homeScreen.querySelectorAll('button')[4];
 
-learnButton.addEventListener('click', showWordScreen);
-exerciseButton.addEventListener('click', showQuizScreen);
-markedButton.addEventListener('click', showMarkedWordScreen);
-addedWordButton.addEventListener('click', showAddedWordScreen);
-settingButton.addEventListener('click', showSettingsScreen);
+learnBtn.addEventListener('click', showWordScreen);
+exerciseBtn.addEventListener('click', showQuizScreen);
+markedBtn.addEventListener('click', showMarkedWordScreen);
+addedWordBtn.addEventListener('click', showAddedWordScreen);
+settingBtn.addEventListener('click', showSettingsScreen);
 
 // Word Screen
-const markButton = wordScreen.querySelector('#bookmark-btn');
-const ttsButton = wordScreen.querySelector('#tts-btn');
-const prevWordButton = wordScreen.querySelector('.btn.prev-word');
-const nextWordButton = wordScreen.querySelector('.btn.next-word');
+const markBtn = wordScreen.querySelector('#bookmark-btn');
+const ttsBtn = wordScreen.querySelector('#tts-btn');
+const prevWordBtn = wordScreen.querySelector('.btn.prev-word');
+const nextWordBtn = wordScreen.querySelector('.btn.next-word');
+const jumpToBtn = wordScreen.querySelector('.btn.jump-to-index');
+const jumpToValueEl = wordScreen.querySelector('#jump-to-input');
 
-markButton.addEventListener('click', markWord);
-ttsButton.addEventListener('click', textToSpeech);
-prevWordButton.addEventListener('click', showPrevWord);
-nextWordButton.addEventListener('click', showNextWord);
+markBtn.addEventListener('click', markWord);
+ttsBtn.addEventListener('click', textToSpeech);
+prevWordBtn.addEventListener('click', showPrevWord);
+nextWordBtn.addEventListener('click', showNextWord);
+jumpToBtn.addEventListener('click', jumpToWord);
+
+function jumpToWord() {
+  if (!jumpToValueEl) return;
+
+  const newIndex = parseInt(jumpToValueEl.value);
+  if (!newIndex || newIndex <= 0) return;
+
+  setWordIndex(newIndex);
+  showWordScreen();
+}
+
+function setJumpToIndexValue(value) {
+  jumpToValueEl.value = value;
+}
 
 function markWord() {
   const checkMarked = markedWordsIndex.indexOf(wordIndex);
 
   if (checkMarked === -1) {
     markedWordsIndex.push(wordIndex);
-    updateMarkButton(true);
+    updateMarkBtn(true);
   } else {
     markedWordsIndex.splice(checkMarked, 1);
-    updateMarkButton(false);
+    updateMarkBtn(false);
   }
 
   setMarkedWordsIndex(markedWordsIndex);
 }
 
-function updateMarkButton(marked) {
-  markButton.classList.remove('fa-regular', 'fa-solid');
-  markButton.classList.add(marked ? 'fa-solid' : 'fa-regular');
+function updateMarkBtn(marked) {
+  markBtn.classList.remove('fa-regular', 'fa-solid');
+  markBtn.classList.add(marked ? 'fa-solid' : 'fa-regular');
 }
 
 function textToSpeech() {
@@ -450,31 +467,33 @@ function renderWord() {
   });
 
   if (wordIndex === 0) {
-    disableButton(prevWordButton, true);
+    disableBtn(prevWordBtn, true);
   } else {
-    disableButton(prevWordButton, false);
+    disableBtn(prevWordBtn, false);
   }
 
   if (wordIndex === vocabularyData.length - 1) {
-    disableButton(nextWordButton, true);
+    disableBtn(nextWordBtn, true);
   } else {
-    disableButton(nextWordButton, false);
+    disableBtn(nextWordBtn, false);
   }
 
-  updateMarkButton(markedWordsIndex.includes(wordIndex));
+  setJumpToIndexValue(wordIndex);
+
+  updateMarkBtn(markedWordsIndex.includes(wordIndex));
 }
 
 // Quiz screen
 const quizNavigation = quizScreen.querySelector('#quiz-nav');
 const quizContent = quizScreen.querySelector('#quiz-content');
-const submitQuizButton = quizScreen.querySelector('.submit-btn');
-const prevQuizButton = quizScreen.querySelector('.prev-btn');
-const nextQuizButton = quizScreen.querySelector('.next-btn');
+const submitQuizBtn = quizScreen.querySelector('.submit-btn');
+const prevQuizBtn = quizScreen.querySelector('.prev-btn');
+const nextQuizBtn = quizScreen.querySelector('.next-btn');
 const quizResultDialog = document.getElementById('quiz-result-dialog');
 
-prevQuizButton.addEventListener('click', showPrevQuiz);
-nextQuizButton.addEventListener('click', showNextQuiz);
-submitQuizButton.addEventListener('click', submitQuiz);
+prevQuizBtn.addEventListener('click', showPrevQuiz);
+nextQuizBtn.addEventListener('click', showNextQuiz);
+submitQuizBtn.addEventListener('click', submitQuiz);
 
 function submitQuiz() {
   rightAnwserNum = 0;
@@ -484,7 +503,7 @@ function submitQuiz() {
   });
 
   for (let i = 0; i < quizList.length; i++) {
-    const navButton = quizNavigation.querySelectorAll('button')[i];
+    const navBtn = quizNavigation.querySelectorAll('button')[i];
     const answerListEl = quizContent.querySelector('.answer_list');
     const selectedAnswerEl = answerListEl.querySelector('.selected');
     const answerListDiv = answerListEl.querySelectorAll('.answer');
@@ -495,14 +514,14 @@ function submitQuiz() {
     );
 
     if (isRightAnswer) {
-      navButton.classList.add('correct');
+      navBtn.classList.add('correct');
       rightAnwserNum++;
       if (selectedAnswerEl) {
         selectedAnswerEl.classList.remove('selected');
         selectedAnswerEl.classList.add('correct');
       }
     } else {
-      navButton.classList.add('incorrect');
+      navBtn.classList.add('incorrect');
 
       if (selectedAnswerEl) {
         selectedAnswerEl.classList.remove('selected');
@@ -610,18 +629,18 @@ function renderQuiz() {
   quizNavigation.innerHTML = '';
 
   quizList.forEach((_, index) => {
-    const quizNavButton = document.createElement('button');
-    quizNavButton.classList.add('unselect');
-    quizNavButton.textContent = index + 1;
-    quizNavButton.dataset.quizIndex = index;
+    const quizNavBtn = document.createElement('button');
+    quizNavBtn.classList.add('unselect');
+    quizNavBtn.textContent = index + 1;
+    quizNavBtn.dataset.quizIndex = index;
 
-    quizNavButton.addEventListener('click', () => {
+    quizNavBtn.addEventListener('click', () => {
       quizIndex = index;
       updateQuizNav();
       renderQuizContent();
     });
 
-    quizNavigation.appendChild(quizNavButton);
+    quizNavigation.appendChild(quizNavBtn);
   });
 
   // init quiz
@@ -657,7 +676,7 @@ function renderQuizContent() {
 
     const selectedAnswer = quizAnswerSelected[quizIndex];
     if (isSubmit) {
-      disableButton(optionEl, true);
+      disableBtn(optionEl, true);
       // if true
       if (compareArrayAnswer(quizOptionList[quizIndex][i], quizAnswerList[quizIndex])) {
         optionEl.classList.add('correct');
@@ -676,10 +695,8 @@ function renderQuizContent() {
     });
     answersListEl.appendChild(optionEl);
   });
-  quizIndex === 0 ? disableButton(prevQuizButton, true) : disableButton(prevQuizButton, false);
-  quizIndex === quizNumber - 1
-    ? disableButton(nextQuizButton, true)
-    : disableButton(nextQuizButton, false);
+  quizIndex === 0 ? disableBtn(prevQuizBtn, true) : disableBtn(prevQuizBtn, false);
+  quizIndex === quizNumber - 1 ? disableBtn(nextQuizBtn, true) : disableBtn(nextQuizBtn, false);
 }
 
 function createSufferAnswers(quiz) {
@@ -691,11 +708,11 @@ function createSufferAnswers(quiz) {
 }
 
 function selectOption(i) {
-  const quizMavButton = quizNavigation.querySelector(`button[data-quiz-index="${quizIndex}"]`);
+  const quizMavBtn = quizNavigation.querySelector(`button[data-quiz-index="${quizIndex}"]`);
   const answerListEl = quizContent.querySelector('.answer_list');
   const answersEl = answerListEl.querySelectorAll(`.answer`);
 
-  quizMavButton.classList.add('selected');
+  quizMavBtn.classList.add('selected');
 
   answersEl.forEach((answerEl) => {
     answerEl.classList.remove('selected');
@@ -737,8 +754,8 @@ function renderMarkedWords() {
 
         meaningsEl.appendChild(meaningEl);
       });
-      const markButton = markedWordDiv.querySelector('.bookmark-btn');
-      markButton.addEventListener('click', (e) => {
+      const markBtn = markedWordDiv.querySelector('.bookmark-btn');
+      markBtn.addEventListener('click', (e) => {
         const wordIndex = parseInt(e.target.dataset.index);
         const marked = markedWordsIndex.indexOf(wordIndex);
 
@@ -755,7 +772,7 @@ function renderMarkedWords() {
 }
 
 // Add word screen
-const addWordButton = addedWordScreen.querySelector('.add-word-btn');
+const addWordBtn = addedWordScreen.querySelector('.add-word-btn');
 const customWordModal = document.getElementById('custom-word-modal');
 const addTypeBtn = customWordModal.querySelector('.add-type');
 const clearFormBtn = customWordModal.querySelector('.clear-form');
@@ -763,7 +780,7 @@ const submitFormBtn = customWordModal.querySelector('.action-form');
 const generatedBtn = customWordModal.querySelector('.generated-data');
 const closeCustomWordModal = customWordModal.querySelector('.close-modal');
 
-addWordButton.addEventListener('click', () => {
+addWordBtn.addEventListener('click', () => {
   addType();
   togglecustomWordModal();
 });
@@ -804,7 +821,7 @@ function addType() {
   const wordTypeSelect = newType.querySelector('.select.word-type');
   const optionContainer = wordTypeSelect.querySelector('.options-container');
   const selectedOption = wordTypeSelect.querySelector('.selected-option');
-  const deleteButton = newType.querySelector('.delete-btn');
+  const deleteBtn = newType.querySelector('.delete-btn');
 
   // Toggle options container visibility when clicking the select
   selectedOption.addEventListener('click', () => optionContainer.classList.toggle('open'));
@@ -818,7 +835,7 @@ function addType() {
     });
   });
 
-  deleteButton.addEventListener('click', () => {
+  deleteBtn.addEventListener('click', () => {
     newType.remove();
   });
 }
@@ -935,15 +952,15 @@ function renderAddedWords() {
         });
       }
 
-      const deleteButton = addedWordDiv.querySelector('.delete-btn');
-      const editButton = addedWordDiv.querySelector('.edit-btn');
-      deleteButton.addEventListener('click', (e) => {
+      const deleteBtn = addedWordDiv.querySelector('.delete-btn');
+      const editBtn = addedWordDiv.querySelector('.edit-btn');
+      deleteBtn.addEventListener('click', (e) => {
         const wordIndex = parseInt(e.target.dataset.index);
         addedWords.splice(wordIndex, 1);
         setAddedWords(addedWords);
         renderAddedWords();
       });
-      editButton.addEventListener('click', (e) => {
+      editBtn.addEventListener('click', (e) => {
         const wordIndex = parseInt(e.target.dataset.index);
         const word = addedWords[wordIndex];
         isEdit = true;
@@ -1136,7 +1153,7 @@ function sufferAnswer(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-function disableButton(el, isDisable) {
+function disableBtn(el, isDisable) {
   if (isDisable) {
     el.classList.add('disabled');
     el.disabled = true;
@@ -1250,11 +1267,67 @@ document.addEventListener('keydown', (event) => {
 // Fab Dialog
 const apiKeyFab = document.getElementById('fab-api-key');
 const info1Fab = document.getElementById('fab-info1');
+const searchWordFab = document.getElementById('fab-search');
 
 const apiKeyDialog = document.getElementById('api-key-dialog');
 const info1Dialog = document.getElementById('info1-dialog');
+const searchWordDialog = document.getElementById('search-word-dialog');
 const overlay = document.getElementById('overlay');
 const addApiKeyBtn = apiKeyDialog.querySelector('#google-api-key-btn');
+const searchInputEl = searchWordDialog.querySelector('input');
+const searchResultsContainer = searchWordDialog.querySelector('#search-results');
+
+searchInputEl.addEventListener('input', () => {
+  handleSearch(searchInputEl.value);
+});
+
+searchWordFab.addEventListener('click', () => {
+  searchWordDialog.classList.add('open');
+  overlay.classList.add('open');
+});
+
+function closeSearchWordDialog() {
+  searchWordDialog.classList.remove('open');
+  overlay.classList.remove('open');
+  clearSearchDialog();
+}
+
+function handleSearch(query) {
+  searchResultsContainer.innerHTML = '';
+  if (!query) return;
+
+  const filteredWords = vocabularyData.filter((word, index) => {
+    const wordMatch = word.word.toLowerCase().includes(query.toLowerCase());
+    if (wordMatch) {
+      word.index = index;
+    }
+    return wordMatch;
+  });
+
+  filteredWords.forEach((word) => {
+    const resultItem = document.createElement('div');
+    resultItem.classList.add('search-result-item');
+    resultItem.textContent = word.word;
+    resultItem.addEventListener('click', () => {
+      wordIndex = word.index;
+      setWordIndex(word.index);
+      showWordScreen();
+      closeSearchWordDialog();
+    });
+
+    searchResultsContainer.appendChild(resultItem);
+  });
+
+  if (filteredWords.length === 0) {
+    const noResults = document.createElement('div');
+    noResults.classList.add('no-results');
+    searchResultsContainer.appendChild(noResults);
+  }
+}
+function clearSearchDialog() {
+  searchInputEl.value = '';
+  searchResultsContainer.innerHTML = '';
+}
 
 addApiKeyBtn.addEventListener('click', function () {
   const inputGoogleApiKeyEl = this.parentNode.querySelector('input');

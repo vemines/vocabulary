@@ -10,7 +10,8 @@
     },
     "wordScreen": {
       "previousWord": "Previous word",
-      "nextWord": "Next word"
+      "nextWord": "Next word",
+      "jumpTo": "Jump to"
     },
     "quizScreen": {
       "previous": "Previous",
@@ -71,6 +72,10 @@
       "description5": "Example: <b>Quiz Per Day is 10</b> and <b>Repeat Quiz is 5</b>",
       "description6": "Day 1: quiz 0-10. Day 2: 0-20 ... Day 6: 10-60",
       "description7": "This app is serverless. Your data is saved in localStorage. Data will be lost if you use incognito or clear browser data."
+    },
+    "searchWordDialog": {
+      "title": "Search Word",
+      "placeholder": "Enter word need search"
     }
   }
 }

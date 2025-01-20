@@ -37,7 +37,7 @@
         </nav>
       </div>
 
-      <!-- Vocabulary Card -->
+      <!-- Word Screen -->
       <div id="word-screen" class="hidden">
         <div class="header">
           <i class="fa-solid fa-arrow-left back-icon" onclick="showHomeScreen()"></i>
@@ -54,6 +54,12 @@
           <button class="btn prev-word">
             <span data-i18n="wordScreen.previousWord">Prev word</span>
           </button>
+          <div id="jump-to">
+            <input type="number" id="jump-to-input" />
+            <button class="btn jump-to-index">
+              <span data-i18n="wordScreen.jumpTo">Jump To</span>
+            </button>
+          </div>
           <button class="btn next-word">
             <span data-i18n="wordScreen.nextWord">Next word</span>
           </button>
@@ -275,6 +281,7 @@
       <div class="fab-container">
         <button class="fab" id="fab-info1"><i class="fa-solid fa-info"></i></button>
         <button class="fab" id="fab-api-key"><i class="fa-solid fa-key"></i></button>
+        <button class="fab" id="fab-search"><i class="fa-solid fa-search"></i></button>
       </div>
       <div class="dialog" id="api-key-dialog">
         <div class="dialog-header">
@@ -298,11 +305,29 @@
           >
           <input
             type="text"
-            id="dialog-input"
+            id="apikey-input"
             placeholder="Enter Google API key"
             data-i18n="apiKeyDialog.placeholder"
           />
           <button id="google-api-key-btn" data-i18n="apiKeyDialog.useKey">Use This Key</button>
+        </div>
+      </div>
+
+      <div class="dialog" id="search-word-dialog">
+        <div class="dialog-header">
+          <h2 class="dialog-title" data-i18n="searchWordDialog.title">Search word</h2>
+          <button class="close-dialog" onclick="closeSearchWordDialog()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="dialog-content">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search word"
+            data-i18n="searchWordDialog.placeholder"
+          />
+          <div id="search-results"></div>
         </div>
       </div>
 

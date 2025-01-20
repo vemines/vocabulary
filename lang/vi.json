@@ -10,7 +10,8 @@
     },
     "wordScreen": {
       "previousWord": "Từ trước đó",
-      "nextWord": "Từ tiếp theo"
+      "nextWord": "Từ tiếp theo",
+      "jumpTo": "Nhảy tới"
     },
     "quizScreen": {
       "previous": "Câu trước",
@@ -71,6 +72,10 @@
       "description5": "Ví dụ: <b>Số câu hỏi mỗi ngày là 10</b> và <b>Số ngày lặp lại là 5</b>",
       "description6": "Ngày 1: bài kiểm tra 0 -> 10. Ngày 2: 0 -> 20 ... Ngày 6: 10 -> 60",
       "description7": "<b style=\"color: red\">Đây là ứng dụng không máy chủ. Dữ liệu của bạn được lưu tại localStorage. Bạn sẽ mất dữ liệu nếu sử dụng chế độ ẩn danh hoặc xóa dữ liệu trình duyệt</b>"
+    },
+    "searchWordDialog": {
+      "title": "Tìm từ vựng",
+      "placeholder": "Nhập từ cần tìm"
     }
   }
 }
